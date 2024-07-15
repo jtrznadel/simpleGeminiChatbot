@@ -1,13 +1,13 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:simple_chatbot/secrets.dart';
 
 class GeminiModel {
-  final String apiKey = "AIzaSyDQrZ5GDIA1jHqVuhXcdzDnJBrnR_wvyDk";
   var model;
 
   GeminiModel() {
     model = GenerativeModel(
       model: 'gemini-1.5-flash-latest',
-      apiKey: apiKey,
+      apiKey: Secrets.geminiApiKey,
     );
   }
 

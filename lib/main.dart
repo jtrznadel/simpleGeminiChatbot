@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_chatbot/constants/colors.dart';
-import 'package:simple_chatbot/gemini_model.dart';
-import 'package:simple_chatbot/models/dialogue_model.dart';
 import 'package:simple_chatbot/views/chat_view.dart';
 
 void main() {
@@ -14,17 +12,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Simple Chatbot',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
             title: const Text('Simple chat bot'),
-            backgroundColor: AppColors.primary,
+            shape: const ContinuousRectangleBorder(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(100),
+                bottomRight: Radius.circular(100),
+              ),
+            ),
+            backgroundColor: AppColors.primaryColor,
           ),
-          backgroundColor: AppColors.primary,
+          backgroundColor: AppColors.bgColor,
           body: const ChatView(),
         ));
   }

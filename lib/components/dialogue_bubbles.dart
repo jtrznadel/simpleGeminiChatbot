@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_chatbot/components/text_bubble.dart';
+import 'package:simple_chatbot/components/answer_bubble.dart';
+import 'package:simple_chatbot/components/question_bubble.dart';
 
 class DialogueBubbles extends StatelessWidget {
   const DialogueBubbles(
@@ -13,14 +14,14 @@ class DialogueBubbles extends StatelessWidget {
     return Column(
       children: [
         Align(
-          alignment: Alignment.centerLeft,
-          child: TextBubble(
+          alignment: Alignment.centerRight,
+          child: QuestionBubble(
             message: question,
           ),
         ),
         Align(
-          alignment: Alignment.centerRight,
-          child: TextBubble(
+          alignment: Alignment.centerLeft,
+          child: AnswerBubble(
             message: answer,
           ),
         ),

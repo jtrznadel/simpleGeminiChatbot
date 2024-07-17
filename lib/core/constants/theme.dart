@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:simple_chatbot/constants/colors.dart';
+
+import 'package:simple_chatbot/core/constants/colors.dart';
 
 class AppTheme {
   static ThemeData darkTheme = ThemeData(

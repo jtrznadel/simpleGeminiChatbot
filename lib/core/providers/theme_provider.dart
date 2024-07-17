@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_chatbot/constants/theme.dart';
+import 'package:simple_chatbot/core/constants/theme.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeData _themeData = AppTheme.lightTheme;

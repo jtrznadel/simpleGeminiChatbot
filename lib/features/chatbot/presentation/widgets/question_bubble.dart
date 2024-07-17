@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_chatbot/constants/colors.dart';
+import 'package:simple_chatbot/core/constants/colors.dart';
 
 class QuestionBubble extends StatelessWidget {
   const QuestionBubble(

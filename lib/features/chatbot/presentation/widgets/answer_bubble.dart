@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:simple_chatbot/constants/colors.dart';
+import 'package:simple_chatbot/core/constants/colors.dart';
 
 class AnswerBubble extends StatelessWidget {
-  const AnswerBubble({super.key, required this.message});
+  const AnswerBubble({super.key, required this.widget});
 
-  final String message;
+  final Widget widget;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +19,7 @@ class AnswerBubble extends StatelessWidget {
           bottomLeft: const Radius.circular(0),
         ),
       ),
-      child: Text(
-        message,
-        style: const TextStyle(
-          color: AppColors.lightBgColor,
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      child: widget,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_chatbot/constants/colors.dart';
 
 class AnswerBubble extends StatelessWidget {
   const AnswerBubble({super.key, required this.message});
@@ -11,7 +12,7 @@ class AnswerBubble extends StatelessWidget {
       padding:
           const EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 20),
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: AppColors.secondaryColor,
         borderRadius: const BorderRadius.all(
           Radius.circular(30),
         ).copyWith(
@@ -21,8 +22,8 @@ class AnswerBubble extends StatelessWidget {
       child: Text(
         message,
         style: const TextStyle(
+          color: AppColors.lightBgColor,
           fontSize: 18,
-          color: Colors.black,
           fontWeight: FontWeight.w500,
         ),
       ),

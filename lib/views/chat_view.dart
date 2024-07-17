@@ -29,60 +29,58 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text('test'),
-        Expanded(
-          child: ListView.builder(
+    return SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(15),
+              itemCount: dialogues.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Column(
+                  children: [
+                    DialogueBubbles(
+                      question: dialogues[index].question,
+                      answer: dialogues[index].answer,
+                      visibility: dialogues[index].question.isNotEmpty,
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+          Container(
             padding: const EdgeInsets.all(15),
-            itemCount: dialogues.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Column(
-                children: [
-                  DialogueBubbles(
-                    question: dialogues[index].question,
-                    answer: dialogues[index].answer,
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-          ),
-          width: context.width,
-          height: context.height * 0.2,
-          child: Row(
-            children: [
-              Expanded(
+            width: context.width,
+            child: Row(
+              children: [
+                Expanded(
                   child: TextField(
-                controller: controller,
-                decoration: InputDecoration(
-                  hintText: "Type a message",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    controller: controller,
+                    decoration: const InputDecoration(
+                      hintText: "Type a message...",
+                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
-              )),
-              IconButton(
-                  onPressed: () async {
-                    String result = await model.process(controller.text.trim());
-                    dialogues.add(DialogueModel(
-                      question: controller.text,
-                      answer: result,
-                    ));
-                    print(dialogues.first.answer);
-                    print(dialogues.first.question);
-                    setState(() {});
-                  },
-                  icon: const Icon(Icons.send)),
-            ],
+                IconButton(
+                    onPressed: () async {
+                      String result =
+                          await model.process(controller.text.trim());
+                      dialogues.add(DialogueModel(
+                        question: controller.text,
+                        answer: result,
+                      ));
+                      controller.clear();
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.send)),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

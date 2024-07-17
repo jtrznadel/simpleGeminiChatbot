@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:simple_chatbot/constants/colors.dart';
 
 class QuestionBubble extends StatelessWidget {
-  const QuestionBubble({super.key, required this.message});
+  const QuestionBubble(
+      {super.key, required this.message, this.visibility = true});
+  final bool visibility;
 
   final String message;
 
   @override
   Widget build(BuildContext context) {
+    if (!visibility) {
+      return const SizedBox();
+    }
     return Container(
       padding:
           const EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 20),
       decoration: BoxDecoration(
-        color: AppColors.questionBubbleBgColor,
+        color: AppColors.primaryColor,
         borderRadius: const BorderRadius.all(
           Radius.circular(30),
         ).copyWith(
@@ -22,8 +27,8 @@ class QuestionBubble extends StatelessWidget {
       child: Text(
         message,
         style: const TextStyle(
+          color: AppColors.darkBgColor,
           fontSize: 18,
-          color: Colors.white,
           fontWeight: FontWeight.w500,
         ),
       ),

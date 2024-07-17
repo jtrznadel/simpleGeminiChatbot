@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:simple_chatbot/constants/colors.dart';
-import 'package:simple_chatbot/gemini_model.dart';
-import 'package:simple_chatbot/models/dialogue_model.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_chatbot/providers/theme_provider.dart';
 import 'package:simple_chatbot/views/chat_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,18 +15,32 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        title: 'Simple Chatbot',
+        theme: themeProvider.themeData,
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
-            title: const Text('Simple chat bot'),
-            backgroundColor: AppColors.primary,
+            title: const Text(
+              'Simple chat bot',
+            ),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  themeProvider.isLightTheme
+                      ? Icons.nightlight_round
+                      : Icons.wb_sunny,
+                  color:
+                      themeProvider.isLightTheme ? Colors.black : Colors.white,
+                ),
+                onPressed: () {
+                  themeProvider.toggleTheme();
+                },
+              ),
+            ],
           ),
-          backgroundColor: AppColors.primary,
+          extendBodyBehindAppBar: true,
           body: const ChatView(),
         ));
   }

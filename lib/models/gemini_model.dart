@@ -11,9 +11,9 @@ class GeminiModel {
     );
   }
 
-  Future<void> process(String prompt) async {
+  Future<String> process(String prompt) async {
     final content = [Content.text(prompt)];
     final response = await model!.generateContent(content);
-    print(response.text);
+    return response.text;
   }
 }
